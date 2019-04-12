@@ -270,7 +270,7 @@ bool process_agent_input(Input::intendedmove_t &intendedmove) {
 
 bool check_input_check_to_end_game(char c) {
   using namespace Input::Keypress::Code;
-  switch (std::toupper(c)) {
+  switch (toupper(c)) {
   case CODE_HOTKEY_CHOICE_NO:
     return true;
   }

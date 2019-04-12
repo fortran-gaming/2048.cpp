@@ -20,23 +20,25 @@ The game and code is made to run natively on the GNU/Linux and MacOS platforms, 
 
 ### Requirements
 
-* C++11 compiler (e.g. `g++`, `clang++`, `pgc++`, `icpc`, etc.)
+* C++11 compiler (e.g. `g++`, `clang++`, `pgc++`, `icpc`, `icl`, etc.)
 * Virtually any platform including:
   * Linux
   * MacOS
-  * Windows (via Cygwin or Windows Subsystem for Linux)
+  * Windows: via Cygwin or Windows Subsystem for Linux
 * [CMake](https://cmake.org/) or [Meson](https://mesonbuild.com/)
 
 ### Installation
 
 1. Open your terminal in your preferred directory and clone this project:
-```sh
-git clone https://github.com/plibither8/2048.cpp
-```
+
+    ```sh
+    git clone https://github.com/plibither8/2048.cpp
+    ```
 2. Enter the project's build directory:
-```sh
-cd 2048.cpp/build
-```
+
+    ```sh
+    cd 2048.cpp/build
+    ```
 
 ---
 
@@ -46,22 +48,26 @@ If you wish to manually select a C++ compiler, optionally add `CXX=clang++ cmake
 #### Building with CMake
 
 3. Generate build configuration
-```sh
-cmake ../
-```
+
+    ```sh
+    cmake ../
+    ```
 4. Build the executable
-```sh
-cmake --build .
-```
+
+    ```sh
+    cmake --build . -j
+    ```
 5. Install the program (optional)
-```sh
-cmake --build . --target install
-```
+
+    ```sh
+    cmake --build . --target install
+    ```
 
 6. Run the program and play the game! :tada:
-```sh
-2048    # run `./2048` if game is not installed
-```
+
+    ```sh
+    2048    # run `./2048` if game is not installed
+    ```
 
 <p align="center">
     <b>OR</b>
@@ -70,23 +76,27 @@ cmake --build . --target install
 #### Building with Meson
 
 3. Generate build configuration
-```sh
-meson ../
-```
+
+    ```sh
+    meson ../
+    ```
 4. Build the executable
-```sh
-ninja
-```
+
+    ```sh
+    ninja
+    ```
 5. Install the program (optional)
-```sh
-meson configure --prefix=$HOME/.local
-ninja install
-```
+
+    ```sh
+    meson configure --prefix=$HOME/.local
+    ninja install
+    ```
 
 6. Run the program and play the game! :tada:
-```sh
-2048    # run `./2048` if game is not installed
-```
+
+    ```sh
+    2048    # run `./2048` if game is not installed
+    ```
 
 ## Contributing
 
@@ -107,6 +117,7 @@ I deeply appreciate the help of the following people:
   * organised the header files in a better way for a more efficient build,
   * added the AppVeyor CI,
   * added the Meson build system and, fixed CMake and added install feature.
+  * fixed native Windows build
 * [Aiman Ismail](https://github.com/pokgak) added support for Vim keybinding.
 * [Patrik Huber](https://github.com/patrikhuber) fixed a typo in the Readme.
 * [zestze](https://github.com/zestze) changed `cstdlib rand` to C++ random int generator.
@@ -150,6 +161,18 @@ I deeply appreciate the help of the following people:
 │      │      │      │      │
 └──────┴──────┴──────┴──────┘
 ```
+
+### native Windows
+
+While 2048 builds and runs on native Windows, the use of special characters for the Unix terminal makes the game board outline appear garbled in the native Windows command prompt.
+Additionally, each in-game directional keypress (WASD) must be followed by Enter.
+Thereby, the game is actually playable in native Windows, but TODO needs graphics fixes.
+
+On Windows, Visual Studio 2017 does not yet work, so build with:
+```sh
+cmake -G "MinGW Makefiles" ..
+```
+and use MinGW or Intel compilers.
 
 ## To-Do
 

@@ -3,7 +3,7 @@ group: travis_latest
 dist: xenial
 
 git:
-  depth: 3
+  depth: 25
   quiet: true
 
 matrix:
@@ -14,12 +14,13 @@ matrix:
     install:
     - cd build
     - cmake -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" ..
-    - cmake --build .
+    - cmake --build . -j
+    script: echo 4 | 2048.exe
 
 install:
 - cd build
 - cmake ..
-- cmake --build .
+- cmake --build . -j
 
 script:
-- echo 4 | ./2048
+- ctest --output-on-failure
