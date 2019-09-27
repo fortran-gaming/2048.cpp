@@ -7,10 +7,10 @@ clone_depth: 25
 
 build: off
 
-before_install:
+install:
 - sh: sudo apt install -yq --no-install-recommends ninja-build
 - sh: python -m pip install meson
 
-install: meson build
+- meson build
 
 test_script: meson test -C build
