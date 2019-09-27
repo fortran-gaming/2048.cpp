@@ -1,0 +1,1 @@
+sources = files('2048.cpp', 'gameboard.cpp', 'game.cpp', 'game-input.cpp', 'game-graphics.cpp', 'game-pregamemenu.cpp', 'global.cpp', 'loadresource.cpp', 'menu.cpp', 'saveresource.cpp', 'scores.cpp', 'statistics.cpp', 'tile.cpp')
