@@ -1,18 +1,16 @@
 image:
 - Ubuntu1804
 
-environment:
-  MINGW_DIR: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
+stack: python 3
 
-clone_depth: 3
+clone_depth: 25
 
 build: off
 
-init:
-- cmd: set PATH=%MINGW_DIR%;%PATH%
+before_install:
+- sh: sudo apt install -yq --no-install-recommends ninja-build
+- sh: python -m pip install meson
 
-install:
-- cd build
-- cmake ..
-- cmake --build .
-- echo 4 | ./2048
+install: meson build
+
+test_script: meson test -C build
