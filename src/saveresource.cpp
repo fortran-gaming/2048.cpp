@@ -1,6 +1,7 @@
 #include "saveresource.hpp"
 #include "gameboard.hpp"
 
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <filesystem>
@@ -92,9 +93,12 @@ void saveToFilePreviousGameStateData(std::string filename,
 void saveGamePlayState(GameBoard gb, const std::string& filename) {
   const std::filesystem::path directory_path = "../data/SavedGameFiles/";
 
-  if (!std::filesystem::exists(directory_path))
-  {
-    std::filesystem::create_directories(directory_path);
+  std::error_code ec;
+
+  std::filesystem::create_directories(directory_path, ec);
+  if (ec) {
+    std::cerr << directory_path << " " << ec.message() << "\n";
+    return;
   }
 
   const auto path_to_file_gd_state = directory_path / filename;
